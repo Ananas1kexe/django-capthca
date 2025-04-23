@@ -4,7 +4,7 @@ Beautiful and easy-to-integrate CAPTCHA module for Django projects. Protect your
 
 ---
 
-## 🔹 Features
+## Features
 
 - Random code generation (letters and digits)
 - Background noise lines to thwart OCR
@@ -14,7 +14,7 @@ Beautiful and easy-to-integrate CAPTCHA module for Django projects. Protect your
 
 ---
 
-## 🚀 Requirements
+## Requirements
 
 - Python 3.8+
 - Django 3.2+
@@ -27,12 +27,12 @@ Beautiful and easy-to-integrate CAPTCHA module for Django projects. Protect your
 
 ---
 
-## 🛠 Installation & Setup
+## Installation & Setup
 
 1. **Clone the repository** or copy the files into your project:
    ```bash
-   git clone https://github.com/yourusername/django-captcha.git
-   cd django-captcha
+   git clone https://github.com/Ananas1kexe/django-capthca
+   cd captcha
    ```
 
 2. **Install dependencies**:
@@ -40,7 +40,7 @@ Beautiful and easy-to-integrate CAPTCHA module for Django projects. Protect your
    pip install -r requirements.txt
    ```
 
-## 🔍 Usage
+## Usage
 
 1. Navigate to the home page (`/`) to view the CAPTCHA form.
 2. Enter the code displayed in the image and click **Verify Now**.
@@ -48,7 +48,7 @@ Beautiful and easy-to-integrate CAPTCHA module for Django projects. Protect your
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository.
 2. Create a feature branch:
@@ -67,12 +67,11 @@ Beautiful and easy-to-integrate CAPTCHA module for Django projects. Protect your
 
 ---
 
-## 📂 Links
+## Links
 
 - [Project Repository](https://github.com/yourusername/django-captcha)
 - [Website Developer](https://ananas1k.vercel.app)
-- [MIT License](LICENSE)
-
+- [MIT License](https://github.com/Ananas1kexe/django-capthca/blob/main/LICENSE)
 ---
 
 ## 📄 License
