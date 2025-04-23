@@ -74,7 +74,7 @@ Beautiful and easy-to-integrate CAPTCHA module for Django projects. Protect your
 - [MIT License](https://github.com/Ananas1kexe/django-capthca/blob/main/LICENSE)
 ---
 
-## 📄 License
+## License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the [MIT License](https://github.com/Ananas1kexe/django-capthca/blob/main/LICENSE).
 
