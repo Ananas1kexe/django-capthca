@@ -1,0 +1,209 @@
+
+<!--
+    _                                      _  _    
+   / \    _ __    __ _  _ __    __ _  ___ / || | __
+  / _ \  | '_ \  / _` || '_ \  / _` |/ __|| || |/ /
+ / ___ \ | | | || (_| || | | || (_| |\__ \| ||   < 
+/_/   \_\|_| |_| \__,_||_| |_| \__,_||___/|_||_|\_\
+-->
+<!--
+    _                                      _  _                _
+   / \    _ __    __ _  _ __    __ _  ___ / || | __         __| |  ___ __   __
+  / _ \  | '_ \  / _` || '_ \  / _` |/ __|| || |/ /        / _` | / _ \\ \ / /
+ / ___ \ | | | || (_| || | | || (_| |\__ \| ||   <        | (_| ||  __/ \ V /
+/_/   \_\|_| |_| \__,_||_| |_| \__,_||___/|_||_|\_\ _____  \__,_| \___|  \_/
+                                                   |_____|
+-->
+<!--design, code and idea developed by Ananas1k-->
+<!--Github Ananas1k - https://github.com/Ananas1kexe -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Human Verification | BotSnare</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    :root {
+      --primary:rgb(70, 229, 181);
+      --success: #10B981;
+      --error: #EF4444;
+      --background:rgb(95, 95, 95);
+      --text-primary: #111827;
+      --text-secondary: #6B7280;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--background);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      margin: 0;
+      color: var(--text-primary);
+    }
+
+    .verification-container {
+      max-width: 400px;
+      margin: auto;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .verification-box {
+      background: white;
+      border-radius: 12px;
+      padding: 2.5rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      border: 1px solid #E5E7EB;
+    }
+
+    .verification-header {
+      margin-bottom: 2rem;
+    }
+
+    .branding-title {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--primary);
+      margin-top: 0.5rem;
+    }
+
+    .verification-icon {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 1.5rem;
+      background: #E0E7FF;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .verification-icon img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .captcha-form {
+      margin-top: 2rem;
+    }
+
+    .captcha-form input[type="text"] {
+      width: 100%;
+      padding: 0.875rem;
+      margin: 1rem 0;
+      border: 2px solid #E5E7EB;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: all 0.2s ease;
+    }
+
+    .captcha-form input[type="text"]:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+    }
+
+    .captcha-form button {
+      width: 100%;
+      padding: 1rem;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .captcha-form button:hover {
+      background: #4338CA;
+    }
+
+    .captcha-form img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+
+    .status-message {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+
+    .captcha-error {
+      color: var(--error);
+      font-size: 0.875rem;
+    }
+
+    .reload-fa {
+      background-color: transparent;
+      border: 1px solid #bbb;
+      border-radius: 5px;
+      padding: 6px 12px;
+      font-size: 13px;
+      color: #444;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background-color 0.2s;
+      margin-top: 0.75rem;
+    }
+
+    .reload-fa:hover {
+      background-color: #f0f0f0;
+    }
+
+    .footer-links {
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+
+    .footer-links a {
+      color: var(--primary);
+      text-decoration: none;
+      margin: 0 0.5rem;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+  
+
+  </style>
+</head>
+<body>
+  <div class="verification-container">
+    <div class="verification-box">
+      <div class="verification-header">
+        <h2>Verify You're Human</h2>
+        <p class="status-message">Made By BotSnare</p>
+
+        <p class="status-message">Complete the verification to continue</p>
+      </div>
+
+      <div class="captcha-form">
+        {% if error %}
+          <p class="captcha-error">{{ error }}</p>
+        {% endif %}
+
+
+        <form id="captchaForm" method="post" action="{% url 'captcha_verify' %}">
+          {% csrf_token %}
+          <img src="{% url 'captcha_image' %}?{{ now|date:'U' }}" alt="CAPTCHA">
+          <input type="text" name="captcha" placeholder="Enter captcha code" required autocomplete="off">
+          <input type="hidden" name="next" value="{{ next }}">
+
+          <button type="submit">Verify Now</button>
+        </form>
+      </div>
+    </div>
+</body>
+</html>
